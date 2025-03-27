@@ -7,6 +7,7 @@ import CarDetails from './components/CarDetails'
 import PriceSection from './components/PriceSection'
 import ContactButtons from './components/ContactButtons'
 import Footer from './components/Footer'
+import FloatingContact from './components/FloatingContact'
 
 function App() {
   // Datos del auto Great Wall C30 2015
@@ -50,6 +51,16 @@ function App() {
   };
 
   useEffect(() => {
+    // Inicializar AOS si está disponible
+    if (window.AOS) {
+      window.AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: false,
+        mirror: false
+      });
+    }
+    
     // Inicializar animaciones al cargar la página
     window.scrollTo(0, 0);
     
@@ -122,6 +133,7 @@ function App() {
       <PriceSection price={carData.price} currency={carData.currency} />
       <ContactButtons contact={carData.contact} />
       <Footer brand={carData.brand} model={carData.model} />
+      <FloatingContact contact={carData.contact} />
     </div>
   );
 }

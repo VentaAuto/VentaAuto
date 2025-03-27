@@ -1,10 +1,12 @@
 // src/components/CarDetails.jsx
+import { useEffect } from 'react';
+
 export default function CarDetails({ carData }) {
   // Configuración de íconos para cada especificación
   const specIcons = {
-    engine: "fa-engine",
-    horsepower: "fa-gauge-high",
-    transmission: "fa-gears",
+    engine: "fa-car-battery",
+    horsepower: "fa-tachometer-alt",
+    transmission: "fa-cogs",
     fuel: "fa-gas-pump",
     color: "fa-palette",
     mileage: "fa-road"
@@ -20,6 +22,38 @@ export default function CarDetails({ carData }) {
     mileage: "Kilometraje verificable con mantenimientos al día."
   };
 
+  useEffect(() => {
+    // Inicializar filtros de galería
+    const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Actualizar botones activos
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filtrar elementos
+        const filter = button.getAttribute('data-filter');
+        
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.classList.contains(filter)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Inicializar lightbox para las imágenes si está disponible
+    if (window.GLightbox) {
+      window.GLightbox({
+        selector: '.gallery-img'
+      });
+    }
+  }, []);
+
   return (
     <>
       {/* Sección de Galería */}
@@ -30,29 +64,42 @@ export default function CarDetails({ carData }) {
             Descubre cada detalle de este impresionante {carData.brand} {carData.model}
           </p>
           
+          <div className="gallery-filter">
+            <button className="gallery-filter-btn active" data-filter="all">Todas</button>
+            <button className="gallery-filter-btn" data-filter="exterior">Exterior</button>
+            <button className="gallery-filter-btn" data-filter="interior">Interior</button>
+          </div>
+          
           <div className="gallery-grid">
-            {carData.images.map((img, index) => (
-              <div 
-                key={index} 
-                className="gallery-item" 
-                data-aos="zoom-in" 
-                data-aos-delay={100 * index}
-              >
-                <img 
-                  src={img} 
-                  alt={`${carData.brand} ${carData.model} vista ${index + 1}`} 
-                  className="gallery-img"
-                />
-                <div className="gallery-overlay">
-                  <h3 className="gallery-title">
-                    {index === 0 ? "Vista Frontal" : 
-                     index === 1 ? "Vista Lateral" : 
-                     index === 2 ? "Interior" : "Detalle"}
-                  </h3>
-                  <p className="gallery-caption">{carData.brand} {carData.model} {carData.year}</p>
+            {carData.images.map((img, index) => {
+              // Asignar categorías a las imágenes
+              const category = index <= 1 ? "exterior" : "interior";
+              const title = index === 0 ? "Vista Frontal" : 
+                          index === 1 ? "Vista Lateral" : 
+                          index === 2 ? "Interior" : "Tablero";
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`gallery-item ${category}`}
+                  data-aos="zoom-in" 
+                  data-aos-delay={100 * index}
+                >
+                  <div className="gallery-img-wrapper">
+                    <img 
+                      src={img} 
+                      alt={`${carData.brand} ${carData.model} ${title}`} 
+                      className="gallery-img"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="gallery-overlay">
+                    <h3 className="gallery-title">{title}</h3>
+                    <p className="gallery-caption">{carData.brand} {carData.model} {carData.year}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
