@@ -52,17 +52,53 @@ export default function CarDetails({ carData }) {
         selector: '.gallery-img'
       });
     }
+
+    // Animación inicial para elementos principales
+    const gsap = window.gsap;
+    if (gsap) {
+      // Animar el título de la galería con un efecto de entrada
+      gsap.from('.gallery-heading', { 
+        opacity: 0, 
+        y: -30, 
+        duration: 1,
+        delay: 0.3
+      });
+      
+      // Animar los botones de filtro con efecto escalonado
+      gsap.from('.gallery-filter-btn', { 
+        opacity: 0, 
+        y: 20, 
+        duration: 0.6,
+        stagger: 0.1,
+        delay: 0.5
+      });
+      
+      // Animar las imágenes de la galería con efecto stagger
+      gsap.from('.gallery-item', { 
+        opacity: 0, 
+        y: 50, 
+        duration: 0.8,
+        stagger: 0.15,
+        delay: 0.8
+      });
+    }
   }, []);
 
   return (
     <>
-      {/* Sección de Galería */}
+      {/* Sección de Galería como sección principal */}
       <section className="car-gallery" id="gallery">
         <div className="gallery-container">
-          <h2 className="section-title" data-aos="fade-up">Galería</h2>
-          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Descubre cada detalle de este impresionante {carData.brand} {carData.model}
-          </p>
+          <div className="gallery-heading">
+            <h1 className="section-title main-title" data-aos="fade-up">
+              {carData.brand} {carData.model} <span className="year-text">{carData.year}</span>
+            </h1>
+            <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              Descubre una experiencia de conducción excepcional con este sedan compacto, 
+              elegante y económico. Un auto diseñado para quienes buscan estilo, 
+              confort y rendimiento.
+            </p>
+          </div>
           
           <div className="gallery-filter">
             <button className="gallery-filter-btn active" data-filter="all">Todas</button>
@@ -90,7 +126,7 @@ export default function CarDetails({ carData }) {
                       src={img} 
                       alt={`${carData.brand} ${carData.model} ${title}`} 
                       className="gallery-img"
-                      loading="lazy"
+                      loading={index === 0 ? "eager" : "lazy"} // Carga rápida para la primera imagen
                     />
                   </div>
                   <div className="gallery-overlay">
@@ -100,6 +136,15 @@ export default function CarDetails({ carData }) {
                 </div>
               );
             })}
+          </div>
+
+          <div className="gallery-action-buttons">
+            <a href="#specs" className="btn btn-primary glow gallery-btn">
+              <i className="fas fa-info-circle btn-icon"></i> Ver Especificaciones
+            </a>
+            <a href="#contact" className="btn btn-secondary gallery-btn">
+              <i className="fas fa-phone btn-icon"></i> Contactar
+            </a>
           </div>
         </div>
       </section>

@@ -2,7 +2,6 @@
 import { useEffect } from 'react'
 import './App.css'
 import Header from './components/Header'
-import Hero from './components/Hero'
 import CarDetails from './components/CarDetails'
 import PriceSection from './components/PriceSection'
 import ContactButtons from './components/ContactButtons'
@@ -128,7 +127,6 @@ function App() {
   return (
     <div className="app-container">
       <Header brand={carData.brand} model={carData.model} year={carData.year} />
-      <Hero carData={carData} />
       <CarDetails carData={carData} />
       <PriceSection price={carData.price} currency={carData.currency} />
       <ContactButtons contact={carData.contact} />
