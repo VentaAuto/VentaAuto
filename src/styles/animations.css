@@ -1,44 +1,62 @@
 /* src/styles/animations.css */
-/* Animaciones y keyframes */
+/* Animaciones y keyframes optimizados */
 
+/* Animación para partículas y blobs */
 @keyframes float {
     0% {
       transform: translate(0, 0);
     }
+    50% {
+      transform: translate(20px, -20px);
+    }
     100% {
-      transform: translate(50px, 50px);
+      transform: translate(0, 0);
     }
   }
   
+  /* Animación de pulsación para elementos destacados */
   @keyframes pulse {
-    0%, 100% {
+    0% {
       transform: scale(1);
-      opacity: 0.1;
+      opacity: 0.8;
     }
     50% {
-      transform: scale(1.5);
-      opacity: 0.2;
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
     }
   }
   
+  /* Animación para textos con gradiente */
   @keyframes textPulse {
     0% {
       text-shadow: 0 0 10px rgba(108, 99, 255, 0.1);
     }
+    50% {
+      text-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+    }
     100% {
-      text-shadow: 0 0 30px rgba(0, 209, 255, 0.3);
+      text-shadow: 0 0 10px rgba(108, 99, 255, 0.1);
     }
   }
   
+  /* Animación para botones con brillo */
   @keyframes buttonGlow {
     0% {
-      box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 8px 25px rgba(0, 209, 255, 0.6);
     }
     100% {
-      box-shadow: 0 0 20px rgba(0, 209, 255, 0.8);
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
     }
   }
   
+  /* Efecto de aparición suave */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -48,4 +66,79 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  /* Efecto de aparición desde la izquierda */
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Efecto de aparición desde la derecha */
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animación para el botón flotante de WhatsApp */
+  @keyframes pulseBorder {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+  
+  /* Clases para aplicar animaciones */
+  .fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .fade-in-left {
+    animation: fadeInLeft 1s ease-out forwards;
+  }
+  
+  .fade-in-right {
+    animation: fadeInRight 1s ease-out forwards;
+  }
+  
+  .pulse-animation {
+    animation: pulse 2s infinite ease-in-out;
+  }
+  
+  .button-glow {
+    animation: buttonGlow 2s infinite alternate ease-in-out;
+  }
+  
+  /* Animación para los elementos al hacer scroll */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación especial para WhatsApp flotante */
+  .floating-whatsapp {
+    animation: pulseBorder 2s infinite;
   }

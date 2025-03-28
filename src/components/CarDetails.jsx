@@ -4,16 +4,9 @@ import { useEffect, useState } from 'react';
 export default function CarDetails({ carData }) {
   // Estado para controlar si las imágenes están cargadas
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
-    console.log("CarDetails montado, carData:", carData);
-    console.log("Imágenes a cargar:", carData.images);
-    
-    // Código de diagnóstico para la consola
-    document.querySelectorAll('.gallery-item').forEach((item, i) => {
-      console.log(`Elemento de galería ${i} encontrado:`, item);
-    });
-    
     // Asegurarse de que las imágenes estén cargadas
     let loadedCount = 0;
     const totalImages = carData.images.length;
@@ -21,65 +14,36 @@ export default function CarDetails({ carData }) {
     carData.images.forEach((src, index) => {
       const img = new Image();
       img.onload = () => {
-        console.log(`Imagen ${index} cargada correctamente: ${src}`);
         loadedCount++;
         if (loadedCount === totalImages) {
-          console.log("Todas las imágenes cargadas");
           setImagesLoaded(true);
         }
       };
       img.onerror = () => {
-        console.error(`Error al cargar imagen ${index}: ${src}`);
-        // Incrementamos el contador incluso para imágenes fallidas para no quedarnos esperando
+        // Incrementamos el contador incluso para imágenes fallidas
         loadedCount++;
         if (loadedCount === totalImages) {
-          console.log("Proceso de carga de imágenes completado, algunas fallaron");
           setImagesLoaded(true);
         }
       };
       img.src = src;
     });
     
-    // Configurar los filtros de galería solo después de que las imágenes carguen
-    const setupGalleryFilters = () => {
-      const filterButtons = document.querySelectorAll('.gallery-filter-btn');
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      
-      console.log("Configurando filtros. Botones:", filterButtons.length, "Items:", galleryItems.length);
-      
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          console.log("Botón de filtro clickeado:", button.getAttribute('data-filter'));
-          
-          // Actualizar botones activos
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          
-          // Filtrar elementos
-          const filter = button.getAttribute('data-filter');
-          
-          galleryItems.forEach(item => {
-            console.log("Evaluando item:", item, "tiene clase:", item.classList.contains(filter));
-            if (filter === 'all' || item.classList.contains(filter)) {
-              item.style.display = 'block';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-        });
-      });
-    };
-    
-    // Si todas las imágenes ya están cargadas o si hay error, configurar filtros
-    if (imagesLoaded) {
-      setupGalleryFilters();
-    }
-    
     // Limpieza
     return () => {
-      console.log("CarDetails desmontado - limpieza");
+      // Cualquier limpieza necesaria
     };
-  }, [carData, imagesLoaded]);
+  }, [carData]);
+
+  // Función para manejar el filtrado de la galería
+  const handleFilterClick = (filter) => {
+    setActiveFilter(filter);
+  };
+
+  // Función para determinar si un ítem debe mostrarse según el filtro activo
+  const shouldShowItem = (category) => {
+    return activeFilter === 'all' || category === activeFilter;
+  };
 
   return (
     <>
@@ -97,13 +61,7 @@ export default function CarDetails({ carData }) {
             </p>
           </div>
           
-          <div className="gallery-filter">
-            <button className="gallery-filter-btn active" data-filter="all">Todas</button>
-            <button className="gallery-filter-btn" data-filter="exterior">Exterior</button>
-            <button className="gallery-filter-btn" data-filter="interior">Interior</button>
-          </div>
-          
-          <div className="gallery-grid" style={{ border: '1px solid red' }}>
+          <div className="gallery-grid">
             {carData.images.map((img, index) => {
               // Asignar categorías a las imágenes
               const category = index <= 1 ? "exterior" : "interior";
@@ -115,24 +73,17 @@ export default function CarDetails({ carData }) {
                 <div 
                   key={index} 
                   className={`gallery-item ${category}`}
-                  style={{ 
-                    border: '2px solid yellow',
-                    minHeight: '200px',
-                    backgroundColor: '#2D2D2D'
-                  }}
+                  style={{ display: shouldShowItem(category) ? 'block' : 'none' }}
                 >
-                  <div className="gallery-img-wrapper" style={{ border: '1px solid green' }}>
+                  <div className="gallery-img-wrapper">
                     <img 
                       src={img} 
                       alt={`${carData.brand} ${carData.model} ${title}`} 
                       className="gallery-img"
                       loading={index === 0 ? "eager" : "lazy"}
-                      style={{ maxWidth: '100%', height: 'auto' }}
-                      onLoad={() => console.log(`Imagen ${index} renderizada correctamente`)}
-                      onError={() => console.error(`Error al renderizar imagen ${index}`)}
                     />
                   </div>
-                  <div className="gallery-overlay" style={{ opacity: 1, transform: 'translateY(0)' }}>
+                  <div className="gallery-overlay">
                     <h3 className="gallery-title">{title}</h3>
                     <p className="gallery-caption">{carData.brand} {carData.model} {carData.year}</p>
                   </div>
@@ -140,19 +91,95 @@ export default function CarDetails({ carData }) {
               );
             })}
           </div>
+        </div>
+      </section>
 
-          <div className="gallery-action-buttons">
-            <a href="#specs" className="btn btn-primary gallery-btn">
-              <i className="fas fa-info-circle btn-icon"></i> Ver Especificaciones
-            </a>
-            <a href="#contact" className="btn btn-secondary gallery-btn">
-              <i className="fas fa-phone btn-icon"></i> Contactar
-            </a>
+      {/* Sección de especificaciones */}
+      <section className="car-details" id="specs">
+        <div className="details-container">
+          <h2 className="section-title" data-aos="fade-up">Especificaciones</h2>
+          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Conoce en detalle las características técnicas de este increíble vehículo
+          </p>
+          
+          <div className="specs-grid">
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="200">
+              <i className="fas fa-car spec-icon"></i>
+              <h3 className="spec-title">Marca y Modelo</h3>
+              <p className="spec-value">{carData.brand} {carData.model}</p>
+              <p className="spec-description">Sedan compacto de origen chino con diseño moderno y atractivo.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="250">
+              <i className="fas fa-calendar-alt spec-icon"></i>
+              <h3 className="spec-title">Año</h3>
+              <p className="spec-value">{carData.year}</p>
+              <p className="spec-description">Vehículo en excelente estado con documentación al día.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="300">
+              <i className="fas fa-palette spec-icon"></i>
+              <h3 className="spec-title">Color</h3>
+              <p className="spec-value">{carData.color}</p>
+              <p className="spec-description">Color elegante que combina estilo y practicidad.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="350">
+              <i className="fas fa-tachometer-alt spec-icon"></i>
+              <h3 className="spec-title">Kilometraje</h3>
+              <p className="spec-value">{carData.mileage.toLocaleString()} km</p>
+              <p className="spec-description">Kilometraje óptimo para el año, todas las mantenciones al día.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="400">
+              <i className="fas fa-cogs spec-icon"></i>
+              <h3 className="spec-title">Transmisión</h3>
+              <p className="spec-value">{carData.transmission}</p>
+              <p className="spec-description">Transmisión suave y precisa para una conducción cómoda.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="450">
+              <i className="fas fa-gas-pump spec-icon"></i>
+              <h3 className="spec-title">Combustible</h3>
+              <p className="spec-value">{carData.fuel}</p>
+              <p className="spec-description">Excelente rendimiento de combustible en ciudad y carretera.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="500">
+              <i className="fas fa-oil-can spec-icon"></i>
+              <h3 className="spec-title">Motor</h3>
+              <p className="spec-value">{carData.engine}</p>
+              <p className="spec-description">Motor confiable con excelente respuesta y bajo consumo.</p>
+            </div>
+            
+            <div className="spec-card" data-aos="fade-up" data-aos-delay="550">
+              <i className="fas fa-bolt spec-icon"></i>
+              <h3 className="spec-title">Potencia</h3>
+              <p className="spec-value">{carData.horsepower}</p>
+              <p className="spec-description">Potencia adecuada para un manejo ágil en ciudad y viajes.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Otras secciones que has definido */}
+      {/* Sección de características */}
+      <section className="features" id="features">
+        <div className="features-container">
+          <h2 className="section-title" data-aos="fade-up">Características</h2>
+          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Este vehículo cuenta con numerosas funcionalidades para tu comodidad y seguridad
+          </p>
+          
+          <div className="features-grid">
+            {carData.features.map((feature, index) => (
+              <div className="feature-item" key={index} data-aos="fade-up" data-aos-delay={150 + (index * 50)}>
+                <i className="fas fa-check-circle feature-icon"></i>
+                <p className="feature-text">{feature}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

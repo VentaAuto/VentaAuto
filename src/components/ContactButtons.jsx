@@ -37,18 +37,6 @@ export default function ContactButtons({ contact }) {
                 Enviar mensaje
               </a>
             </div>
-            
-            <div className="contact-card" data-aos="fade-up" data-aos-delay="400">
-              <i className="fas fa-envelope contact-icon"></i>
-              <h3 className="contact-title">Email</h3>
-              <div className="contact-info">{contact.email}</div>
-              <p className="contact-description">
-                Para consultas detalladas, puedes escribirme un correo electrónico.
-              </p>
-              <a href={`mailto:${contact.email}`} className="contact-button">
-                Enviar email
-              </a>
-            </div>
           </div>
         </div>
       </section>

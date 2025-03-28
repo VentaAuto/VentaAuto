@@ -1,59 +1,54 @@
 /* src/styles/responsive.css */
-/* Media queries para responsividad */
+/* Reglas de responsividad mejoradas */
 
-@media (max-width: 1200px) {
-    .hero-title {
-      font-size: 3.5rem;
+/* Tablets y dispositivos medianos (768px - 1023px) */
+@media (max-width: 1023px) {
+    .hero-title, .main-title {
+      font-size: 3rem;
     }
     
+    .section-title {
+      font-size: 2.2rem;
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    /* Grid para dispositivos medianos */
     .gallery-grid {
       grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
     }
     
     .gallery-item:nth-child(1) {
       grid-column: span 6;
+      grid-row: span 1;
     }
     
     .gallery-item:nth-child(2),
     .gallery-item:nth-child(3) {
       grid-column: span 3;
+      grid-row: span 1;
     }
     
     .gallery-item:nth-child(4),
     .gallery-item:nth-child(5) {
       grid-column: span 3;
-    }
-  }
-  
-  @media (max-width: 1024px) {
-    .main-title {
-      font-size: 3rem;
+      grid-row: span 1;
     }
     
-    .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .gallery-item:nth-child(1) {
-      grid-column: span 2;
-    }
-    
-    .gallery-item:nth-child(2),
-    .gallery-item:nth-child(3),
-    .gallery-item:nth-child(4) {
-      grid-column: span 1;
-    }
-    
+    /* Sección de precio */
     .price-content {
       flex-direction: column;
       align-items: center;
+      gap: 30px;
     }
     
     .price-info {
       max-width: 100%;
       width: 100%;
       order: 2;
-      margin-top: 40px;
     }
     
     .price-card {
@@ -62,64 +57,13 @@
     }
   }
   
-  @media (max-width: 768px) {
-    .hero-content {
-      flex-direction: column;
-      text-align: center;
-    }
-    
-    .hero-text-content {
-      text-align: center;
-      padding-right: 0;
-      margin-bottom: 30px;
-    }
-    
-    .hero-title {
+  /* Móviles grandes y tablets pequeñas (576px - 767px) */
+  @media (max-width: 767px) {
+    .hero-title, .main-title {
       font-size: 2.5rem;
     }
     
-    .hero-subtitle {
-      font-size: 1.2rem;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-    }
-    
-    .gallery-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .gallery-item {
-      grid-column: span 1 !important;
-    }
-    
-    .price-card {
-      padding: 30px;
-    }
-    
-    .price-value {
-      font-size: 3rem;
-    }
-    
-    .hero-buttons {
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-    }
-    
-    .btn {
-      width: 100%;
-      max-width: 300px;
-    }
-    
-    .hero-image-container {
-      width: 100%;
-      max-width: 400px;
-      height: 300px;
-      margin: 0 auto;
-    }
-    
+    /* Header y navegación */
     .mobile-menu-button {
       display: flex;
     }
@@ -142,28 +86,106 @@
       right: 0;
     }
     
-    .main-title {
-      font-size: 2.5rem;
-      margin-top: 60px;
+    .nav-items a {
+      padding: 15px 0;
+      font-size: 1rem;
+      border-bottom: 1px solid var(--dark-border);
     }
     
-    .gallery-action-buttons {
-      flex-direction: column;
-      align-items: center;
+    /* Secciones */
+    section {
+      padding: 60px 20px;
     }
     
-    .gallery-btn {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .hero-title {
+    .section-title {
       font-size: 2rem;
     }
     
-    .spec-card, .contact-card {
+    /* Galería */
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+    }
+    
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(3),
+    .gallery-item:nth-child(4) {
+      grid-column: span 1;
+    }
+    
+    /* Botones */
+    .gallery-action-buttons,
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 280px;
+    }
+    
+    /* Tarjetas */
+    .specs-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .feature-item {
+      padding: 15px;
+    }
+    
+    .price-card {
+      padding: 30px;
+    }
+    
+    .price-value {
+      font-size: 3rem;
+    }
+    
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .quick-contact {
+      margin-top: 40px;
+    }
+    
+    .contact-form {
+      flex-direction: column;
+    }
+    
+    .form-group {
+      width: 100%;
+    }
+  }
+  
+  /* Móviles pequeños (hasta 575px) */
+  @media (max-width: 575px) {
+    .hero-title, .main-title {
+      font-size: 2rem;
+    }
+    
+    /* Galería */
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .gallery-item {
+      grid-column: span 1 !important;
+    }
+    
+    .gallery-item:nth-child(1) {
+      min-height: 300px;
+    }
+    
+    /* Tarjetas y secciones */
+    .spec-card, .contact-card, .price-info-item {
       padding: 20px;
     }
     
@@ -171,6 +193,13 @@
       font-size: 2.5rem;
     }
     
+    .price-currency {
+      top: 5px;
+      left: -20px;
+      font-size: 1.2rem;
+    }
+    
+    /* Footer */
     .footer-links {
       flex-direction: column;
       gap: 15px;
@@ -181,24 +210,10 @@
       justify-content: center;
     }
     
-    .section-subtitle {
-      font-size: 1rem;
-      margin-bottom: 40px;
-    }
-    
-    .price-currency {
-      top: 5px;
-      left: -20px;
-      font-size: 1.2rem;
-    }
-    
+    /* Iconos y botones flotantes */
     .contact-icon {
       padding: 15px;
       font-size: 2rem;
-    }
-    
-    .feature-item {
-      padding: 15px;
     }
     
     .floating-whatsapp,
@@ -206,5 +221,37 @@
       width: 50px;
       height: 50px;
       font-size: 1.5rem;
+    }
+  }
+  
+  /* Para dispositivos de pantalla grande */
+  @media (min-width: 1200px) {
+    .gallery-grid {
+      grid-auto-rows: minmax(300px, auto);
+    }
+    
+    .gallery-item:nth-child(1) {
+      grid-column: 1 / span 6;
+      grid-row: span 2;
+    }
+    
+    .gallery-item:nth-child(2) {
+      grid-column: 7 / span 6;
+      grid-row: 1 / span 1;
+    }
+    
+    .gallery-item:nth-child(3) {
+      grid-column: 7 / span 6;
+      grid-row: 2 / span 1;
+    }
+    
+    .gallery-item:nth-child(4) {
+      grid-column: 1 / span 6;
+      grid-row: 3 / span 1;
+    }
+    
+    .gallery-item:nth-child(5) {
+      grid-column: 7 / span 6;
+      grid-row: 3 / span 1;
     }
   }
