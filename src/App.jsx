@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useEffect } from 'react'
-import './App.css'
+import './styles/index.css' // Cambiado de './App.css' a './styles/index.css'
 import Header from './components/Header'
 import CarDetails from './components/CarDetails'
 import PriceSection from './components/PriceSection'

@@ -1,0 +1,62 @@
+/* src/styles/reset.css */
+/* Reset y estilos base */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--dark-bg);
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(108, 99, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(0, 209, 255, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+  
+  /* Scrollbar personalizado */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--dark-border);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+  }
+  
+  /* Estilos de texto base */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+  }
+  
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }

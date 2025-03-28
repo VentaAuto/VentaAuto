@@ -1,0 +1,28 @@
+/* src/styles/index.css */
+/* Archivo principal que importa todos los estilos */
+
+/* Importar variables primero */
+@import './variables.css';
+
+/* Importar reset y estilos base */
+@import './reset.css';
+
+/* Importar layout */
+@import './layout.css';
+
+/* Componentes específicos */
+@import './navbar.css';
+@import './buttons.css';
+@import './hero.css';
+@import './gallery.css';
+@import './car-details.css';
+@import './features.css';
+@import './price-section.css';
+@import './contact.css';
+@import './footer.css';
+
+/* Animaciones */
+@import './animations.css';
+
+/* Responsividad (siempre al final) */
+@import './responsive.css';

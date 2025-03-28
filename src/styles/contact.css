@@ -1,0 +1,64 @@
+/* src/styles/contact.css */
+/* Estilos para la sección de contacto */
+
+.contact-section {
+    background-color: var(--dark-surface);
+    padding: 100px 0;
+  }
+  
+  .contact-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
+  
+  .contact-card {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid var(--dark-border);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color);
+  }
+  
+  .contact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    display: inline-block;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: rgba(108, 99, 255, 0.1);
+  }
+  
+  .contact-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+  }
+  
+  .contact-info {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+  }
+  
+  .contact-description {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+  }

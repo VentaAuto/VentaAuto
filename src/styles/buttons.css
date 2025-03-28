@@ -1,0 +1,144 @@
+/* src/styles/buttons.css */
+/* Estilos para botones */
+
+.btn {
+    font-family: 'Rajdhani', sans-serif;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  
+  .btn-primary {
+    background: var(--gradient-1);
+    color: var(--text-primary);
+    border: none;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--secondary-color);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.6);
+    animation: buttonGlow 1.5s infinite alternate ease-in-out;
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(0, 209, 255, 0.1);
+    transform: translateY(-3px);
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  .gallery-btn {
+    min-width: 200px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .gallery-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Botones de filtro */
+  .gallery-filter-btn {
+    background-color: var(--dark-card);
+    color: var(--text-primary);
+    border: 1px solid var(--dark-border);
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .gallery-filter-btn:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gallery-filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.4);
+  }
+  
+  /* Botones de contacto */
+  .contact-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  
+  .contact-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Efectos de brillo */
+  .glow {
+    position: relative;
+  }
+  
+  .glow::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: inherit;
+    background: var(--gradient-1);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .glow:hover::after {
+    opacity: 0.5;
+  }
+  
+  .glow-text {
+    position: relative;
+    display: inline-block;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+    transition: text-shadow 0.3s ease;
+  }
+  
+  .glow-text:hover {
+    text-shadow: 0 0 20px rgba(108, 99, 255, 0.8);
+  }

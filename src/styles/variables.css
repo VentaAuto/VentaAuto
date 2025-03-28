@@ -1,0 +1,33 @@
+/* src/styles/variables.css */
+/* Variables globales CSS */
+
+:root {
+    /* Esquema de colores oscuro moderno */
+    --primary-color: #6C63FF;          /* Púrpura vibrante */
+    --secondary-color: #00D1FF;        /* Azul cian brillante */
+    --accent-color: #FF4C4C;           /* Rojo neón */
+    --highlight: #FF9900;              /* Naranja para destacados */
+    --success: #00E676;                /* Verde para éxito */
+    
+    /* Fondos */
+    --dark-bg: #121212;                /* Fondo negro principal */
+    --dark-surface: #1E1E1E;           /* Fondo de componentes */
+    --dark-card: #2D2D2D;              /* Fondo de tarjetas */
+    --dark-border: #3D3D3D;            /* Bordes suaves */
+    
+    /* Textos */
+    --text-primary: #FFFFFF;           /* Texto principal blanco */
+    --text-secondary: #B0B0B0;         /* Texto secundario gris claro */
+    --text-tertiary: #777777;          /* Texto terciario gris oscuro */
+    
+    /* Gradientes */
+    --gradient-1: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --gradient-2: linear-gradient(135deg, var(--accent-color), var(--highlight));
+    
+    /* Diseño */
+    --max-width: 1400px;
+    --header-height: 70px;
+    --border-radius: 10px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }

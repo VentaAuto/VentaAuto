@@ -1,0 +1,66 @@
+/* src/styles/car-details.css */
+/* Estilos para la sección de detalles del coche */
+
+.car-details {
+    background-color: var(--dark-bg);
+    padding: 100px 0;
+  }
+  
+  .details-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .spec-card {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    transition: var(--transition);
+    border: 1px solid var(--dark-border);
+    box-shadow: var(--box-shadow);
+    height: 100%;
+  }
+  
+  .spec-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color);
+  }
+  
+  .spec-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .spec-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+  }
+  
+  .spec-value {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+  
+  .spec-description {
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
