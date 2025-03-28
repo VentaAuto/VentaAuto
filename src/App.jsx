@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useEffect } from 'react'
-import './styles/index.css' // Cambiado de './App.css' a './styles/index.css'
+import './styles/index.css'
 import Header from './components/Header'
 import CarDetails from './components/CarDetails'
 import PriceSection from './components/PriceSection'
@@ -35,10 +35,11 @@ function App() {
       'Control de estabilidad'
     ],
     images: [
-      '/img/greatwall-front.jpg',
-      '/img/greatwall-side.jpg',
-      '/img/greatwall-interior.jpg',
-      '/img/greatwall-dashboard.jpg'
+      // Usar imágenes de placeholder por ahora
+      'https://via.placeholder.com/800x600/2D2D2D/FFFFFF?text=Great+Wall+C30+Frontal',
+      'https://via.placeholder.com/800x600/2D2D2D/FFFFFF?text=Great+Wall+C30+Lateral',
+      'https://via.placeholder.com/800x600/2D2D2D/FFFFFF?text=Great+Wall+C30+Interior',
+      'https://via.placeholder.com/800x600/2D2D2D/FFFFFF?text=Great+Wall+C30+Dashboard'
     ],
     price: 5800000,
     currency: 'CLP',

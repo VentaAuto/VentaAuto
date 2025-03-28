@@ -1,9 +1,12 @@
+/* Verificar que src/styles/gallery.css tiene el contenido correcto */
+/* Este es el contenido que debería tener: */
+
 /* src/styles/gallery.css */
 /* Estilos para la sección de galería */
 
 .car-gallery {
     background-color: var(--dark-surface);
-    padding: 120px 0 80px; /* Aumentamos el padding superior para compensar el header */
+    padding: 120px 0 80px; /* Padding extra en la parte superior para el header */
     position: relative;
     overflow: hidden;
     margin-top: 0;
