@@ -20,9 +20,11 @@
 @import './price-section.css';
 @import './contact.css';
 @import './footer.css';
+@import './lightbox.css';
 
 /* Animaciones */
 @import './animations.css';
+
 
 /* Responsividad (siempre al final) */
 @import './responsive.css';

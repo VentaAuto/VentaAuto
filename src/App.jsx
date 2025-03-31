@@ -9,13 +9,13 @@ import Footer from './components/Footer'
 import FloatingContact from './components/FloatingContact'
 
 function App() {
-  // Datos del auto Great Wall C30 2015
+  // Datos del auto Great Wall C30 2019
   const carData = {
     brand: 'Great Wall',
-    model: 'C30',
-    year: 2015,
-    color: 'Negro',
-    mileage: 85000,
+    model: 'C30+',
+    year: 2019,
+    color: 'Blanco',
+    mileage: 75000,
     transmission: 'Manual',
     fuel: 'Gasolina',
     engine: '1.5L',
@@ -35,17 +35,17 @@ function App() {
       'Control de estabilidad'
     ],
     images: [
-      '/img/greatwall-front.jpg',
-      '/img/greatwall-side.jpg',
-      '/img/greatwall-interior.jpg',
-      '/img/greatwall-dashboard.jpg'
+      '/img/2.JPEG',
+      '/img/7.JPEG',
+      '/img/10.JPEG',
+      '/img/12.JPEG'
     ],
-    price: 5800000,
+    price: 5700000,
     currency: 'CLP',
     contact: {
       phone: '+56940453861',
       whatsapp: '+56940453861',
-      email: 'tuemail@ejemplo.com'
+      email: 'mezasuarez03@gmail.com'
     }
   };
 
