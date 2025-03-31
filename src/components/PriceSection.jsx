@@ -39,10 +39,7 @@ export default function PriceSection({ price, currency }) {
               <i className="fas fa-check feature-check"></i>
               Sin multas ni gravámenes
             </li>
-            <li className="price-feature">
-              <i className="fas fa-check feature-check"></i>
-              Posibilidad de financiamiento bancario
-            </li>
+
           </ul>
         
         </div>
